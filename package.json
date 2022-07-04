@@ -95,7 +95,8 @@
     "oref0-get-ns-entries": "./bin/oref0-get-ns-entries.js",
     "oref0-shared-node-loop": "./bin/oref0-shared-node-loop.sh",
     "peb-urchin-status": "./bin/peb-urchin-status.sh",
-    "wifi": "./bin/oref0-tail-wifi.sh"
+    "wifi": "./bin/oref0-tail-wifi.sh",
+    "generator-glucose": "./bin/generator-glucose.js"
   },
   "homepage": "https://github.com/openaps/oref0",
   "dependencies": {

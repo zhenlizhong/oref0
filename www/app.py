@@ -8,7 +8,8 @@ import pytz
 
 app = Flask(__name__)
 CORS(app)
-myopenaps_dir = "/root/myopenaps/"
+# myopenaps_dir = "/root/myopenaps/"
+myopenaps_dir = "/Users/zhenlizhong/Desktop/Dissertation/zhenlizhong/oref0/patient1/"
     
 def getip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -24,10 +25,10 @@ def getip():
 
 @app.route("/")
 def index():
-    try:
-      myopenaps_dir = os.environ['OPENAPS_DIR']
-    except KeyError:
-        myopenaps_dir = "/root/myopenaps/"
+    # try:
+    #   myopenaps_dir = os.environ['OPENAPS_DIR']
+    # except KeyError:
+    #     myopenaps_dir = "/root/myopenaps/"
     data=dict()
     try:
         error_text = "getHost"
@@ -47,35 +48,41 @@ def index():
 
 @app.route("/suggested")
 def suggested():
-    json_url = os.path.join(myopenaps_dir + "enact/suggested.json")
+#     json_url = os.path.join(myopenaps_dir + "enact/suggested.json")
+    json_url = os.path.join(myopenaps_dir + "suggested.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/enacted")
 def enacted():
-    json_url = os.path.join(myopenaps_dir + "enact/enacted.json")
+#     json_url = os.path.join(myopenaps_dir + "enact/enacted.json")
+    json_url = os.path.join(myopenaps_dir + "enacted.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/glucose")
 def glucose():
-    if os.path.getmtime(myopenaps_dir + "xdrip/glucose.json") > os.path.getmtime(myopenaps_dir + "monitor/glucose.json") and os.path.getsize(myopenaps_dir + "xdrip/glucose.json") > 0:
-        json_url = os.path.join(myopenaps_dir + "xdrip/glucose.json")
-    else:
-        json_url = os.path.join(myopenaps_dir + "monitor/glucose.json")
+    # if os.path.getmtime(myopenaps_dir + "xdrip/glucose.json") > os.path.getmtime(myopenaps_dir + "monitor/glucose.json") and os.path.getsize(myopenaps_dir + "xdrip/glucose.json") > 0:
+    #     json_url = os.path.join(myopenaps_dir + "xdrip/glucose.json")
+    # else:
+    #     json_url = os.path.join(myopenaps_dir + "monitor/glucose.json")
+    json_url = os.path.join(myopenaps_dir + "glucose.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/sgv.json")
 def sgvjson():
-    json_url = os.path.join(myopenaps_dir + "settings/profile.json")
+#     json_url = os.path.join(myopenaps_dir + "settings/profile.json")
+    json_url = os.path.join(myopenaps_dir + "profile.json")
     data = json.load(open(json_url))
     units = data['out_units']
     count = request.args.get('count', default = 10, type = int)
-    if os.path.getmtime(myopenaps_dir + "xdrip/glucose.json") > os.path.getmtime(myopenaps_dir + "monitor/glucose.json"):
-        json_url = os.path.join(myopenaps_dir + "xdrip/glucose.json")
-    else:
-        json_url = os.path.join(myopenaps_dir + "monitor/glucose.json")
+    # if os.path.getmtime(myopenaps_dir + "xdrip/glucose.json") > os.path.getmtime(myopenaps_dir + "monitor/glucose.json"):
+    #     json_url = os.path.join(myopenaps_dir + "xdrip/glucose.json")
+    # else:
+    #     json_url = os.path.join(myopenaps_dir + "monitor/glucose.json")
+
+    json_url = os.path.join(myopenaps_dir + "glucose.json")
     data = json.load(open(json_url))
     if units == "mg/dL":
         data[0]['units_hint'] = "mgdl"
@@ -85,13 +92,15 @@ def sgvjson():
 
 @app.route("/temptargets")
 def temptargets():
-    json_url = os.path.join(myopenaps_dir + "settings/temptargets.json")
+#     json_url = os.path.join(myopenaps_dir + "settings/temptargets.json")
+    json_url = os.path.join(myopenaps_dir + "temptargets.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/cgm")
 def cgm():
-    json_url = os.path.join(myopenaps_dir + "monitor/xdripjs/cgm-pill.json")
+#     json_url = os.path.join(myopenaps_dir + "monitor/xdripjs/cgm-pill.json")
+    json_url = os.path.join(myopenaps_dir + "cgm-pill.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
@@ -105,43 +114,50 @@ def system():
 
 @app.route("/profile")
 def profile():
-    json_url = os.path.join(myopenaps_dir + "settings/profile.json")
+#     json_url = os.path.join(myopenaps_dir + "settings/profile.json")
+    json_url = os.path.join(myopenaps_dir + "profile.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/pumphistory")
 def pumphistory():
-    json_url = os.path.join(myopenaps_dir + "monitor/pumphistory-24h-zoned.json")
+    # json_url = os.path.join(myopenaps_dir + "monitor/pumphistory-24h-zoned.json")
+    json_url = os.path.join(myopenaps_dir + "pumphistory.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/iob")
 def iob():
-    json_url = os.path.join(myopenaps_dir + "monitor/iob.json")
+    # json_url = os.path.join(myopenaps_dir + "monitor/iob.json")
+    json_url = os.path.join(myopenaps_dir + "iob.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/pump_battery")
 def pump_battery():
-    json_url = os.path.join(myopenaps_dir + "monitor/battery.json")
+#     json_url = os.path.join(myopenaps_dir + "monitor/battery.json")
+    json_url = os.path.join(myopenaps_dir + "battery.json")
     data = json.load(open(json_url))
     return jsonify(data)
     
 @app.route("/edison_battery")
 def edison_battery():
-    json_url = os.path.join(myopenaps_dir + "monitor/edison-battery.json")
+    # json_url = os.path.join(myopenaps_dir + "monitor/edison-battery.json")
+    json_url = os.path.join(myopenaps_dir + "edison-battery.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/meal")
 def meal():
-    json_url = os.path.join(myopenaps_dir + "monitor/meal.json")
+    # json_url = os.path.join(myopenaps_dir + "monitor/meal.json")
+    json_url = os.path.join(myopenaps_dir + "meal.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
 @app.route("/temp_basal")
 def temp_basal():
-    json_url = os.path.join(myopenaps_dir + "monitor/temp_basal.json")
+    # json_url = os.path.join(myopenaps_dir + "monitor/temp_basal.json")
+    json_url = os.path.join(myopenaps_dir + "temp_basal.json")
     data = json.load(open(json_url))
     return jsonify(data)
 
