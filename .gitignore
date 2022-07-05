@@ -28,3 +28,11 @@ package-lock.json
 
 bash-unit-test-temp
 
+
+patient2/iob.json
+patient2/suggested.json
+patient2/meal.json
+
+patient3/iob.json
+patient3/suggested.json
+patient3/meal.json

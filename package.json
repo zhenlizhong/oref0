@@ -96,7 +96,10 @@
     "oref0-shared-node-loop": "./bin/oref0-shared-node-loop.sh",
     "peb-urchin-status": "./bin/peb-urchin-status.sh",
     "wifi": "./bin/oref0-tail-wifi.sh",
-    "generator-glucose": "./bin/generator-glucose.js"
+    "generator-glucose": "./bin/generator-glucose.js",
+    "update-currentTime": "./bin/update-currentTime.js",
+    "update-fake-glucose": "./bin/update-fake-glucose.js",
+    "update-pumphistory": "./bin/update-pumphistory.js"
   },
   "homepage": "https://github.com/openaps/oref0",
   "dependencies": {

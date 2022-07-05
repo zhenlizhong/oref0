@@ -4,7 +4,7 @@
 // 60—100mg/dl
 var generatorGlucose = function generatorGlucose() {
     let len = 200;
-    let glucose = 140;
+    let glucose = 180;
     let createTime = new Date();
     let glucoseArray = []
     createTime = createTime || new Date()
@@ -14,7 +14,7 @@ var generatorGlucose = function generatorGlucose() {
             type: "sgv",
             device: "fakecgm"
         }
-        let tempTime = new Date(createTime.getTime() - 5 * i * 60 * 1000);
+        let tempTime = new Date(createTime.getTime() - (5 * i -1) * 60 * 1000);
         data["dateString"] = tempTime.toISOString();
         data["date"] = tempTime.getTime();
 
