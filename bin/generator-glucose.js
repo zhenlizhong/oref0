@@ -19,7 +19,7 @@ var generatorGlucose = function generatorGlucose() {
         data["date"] = tempTime.getTime();
 
         // 血糖的浮动数值
-        let fluctuate = Math.floor(Math.random() * 6);
+        let fluctuate = Math.floor(Math.random() * 20);
         // 血糖走势 + or -
         let calSymbol = Math.floor(Math.random() * 10) > 5;
         let tempGlucose = calSymbol ? glucose + fluctuate : glucose - fluctuate

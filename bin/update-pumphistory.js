@@ -9,8 +9,13 @@ var updatePumpHistory = function updatePumpHistory() {
     {
       "_type": "Bolus",
       "amount": 1,
-      "timestamp": new Date(time.getTime() - (5 * 10 -1) * 60 * 1000) // 23 or 13
-    }
+      "timestamp": new Date(new Date().getTime() - 2000) // 2 secs ago
+    },
+    {
+      "_type": "Bolus",
+      "amount": 2,
+      "timestamp": new Date(time.getTime() - (5 * 10 -1) * 60 * 1000) // 50 min ago
+    },
   ]
 
   return JSON.stringify(pumpTemp);
